@@ -6,6 +6,7 @@ businessSubtitle: Wekelijks vers huisgemaakt afhaalmenu
 whatsappNumber: 31619912663
 orderDeadline: uiterlijk maandag voor 20:00
 pickupMoment: woensdag tussen 17:30 - 18:00
+pickupAddress:
 paymentMethod: Betaling vooraf via Tikkie
 weekLabel: Weekmenu 17
 servingDate: woensdag 8 april

@@ -42,7 +42,7 @@ function parseWeekmenuText(text) {
     const key = line.slice(0, separatorIndex).trim();
     const value = line.slice(separatorIndex + 1).trim();
 
-    if (key && value) {
+    if (key) {
       result[key] = value;
     }
   }

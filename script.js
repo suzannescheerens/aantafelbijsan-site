@@ -23,6 +23,13 @@ function setText(id, value) {
   }
 }
 
+function setVisibility(id, visible) {
+  const element = document.getElementById(id);
+  if (element) {
+    element.hidden = !visible;
+  }
+}
+
 function parseWeekmenuText(text) {
   const result = { ...fallbackContent };
   const lines = text.split(/\r?\n/);
@@ -77,6 +84,7 @@ function setUpContent(content) {
   setText("pickupMoment", `Afhalen: ${content.pickupMoment}`);
   setText("pickupAddress", content.pickupAddress);
   setText("maxPortionsText", content.maxPortionsText);
+  setVisibility("pickupAddressItem", Boolean(content.pickupAddress));
 
   document.title = `${content.businessName} | ${content.weekLabel}`;
 

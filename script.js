@@ -49,7 +49,8 @@ function setLink(id, href, label) {
   element.href = href;
 
   if (label) {
-    element.textContent = label;
+    element.setAttribute("aria-label", label);
+    element.setAttribute("title", label);
   }
 }
 

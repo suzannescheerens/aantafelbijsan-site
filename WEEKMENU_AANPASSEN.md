@@ -17,6 +17,7 @@ Handig om te weten:
 
 - De vaste gegevens staan in `weekmenu-next.txt` al voor je ingevuld
 - Je hoeft meestal alleen `publishAt`, `weekLabel`, `servingDate`, `tagline`, `dishTitle`, `dishDescription`, `invitation` en `priceText` aan te passen
+- Je kunt vooraf een preview bekijken via `https://www.aantafelbijsan.nl/?preview=next`
 
 Voorbeeld:
 

@@ -91,6 +91,11 @@ function isScheduledMenuLive(content) {
   return Number.isFinite(publishTime) && Date.now() >= publishTime;
 }
 
+function getPreviewMode() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("preview");
+}
+
 function buildWhatsAppMessage(content) {
   return [
     `Hallo San, ik wil graag bestellen voor ${content.weekLabel}.`,
@@ -103,9 +108,10 @@ function buildWhatsAppMessage(content) {
   ].join("\n");
 }
 
-function setUpContent(content) {
+function setUpContent(content, options = {}) {
   setText("businessName", content.businessName);
   setText("businessSubtitle", content.businessSubtitle);
+  setVisibility("previewNote", Boolean(options.isPreview));
   setText("menuWeekLabel", content.weekLabel);
   setText("menuServingDate", content.servingDate);
   setText("menuTagline", content.tagline);
@@ -147,6 +153,7 @@ async function loadTextFile(path) {
 }
 
 async function loadContent() {
+  const previewMode = getPreviewMode();
   let currentContent = fallbackContent;
 
   try {
@@ -160,14 +167,27 @@ async function loadContent() {
     const scheduledText = await loadTextFile("weekmenu-next.txt");
     const scheduledContent = parseWeekmenuText(scheduledText, currentContent);
 
+    if (previewMode === "next") {
+      return {
+        content: scheduledContent,
+        options: { isPreview: true }
+      };
+    }
+
     if (isScheduledMenuLive(scheduledContent)) {
-      return scheduledContent;
+      return {
+        content: scheduledContent,
+        options: { isPreview: false }
+      };
     }
   } catch (error) {
     // Geen gepland menu gevonden; gebruik gewoon het live menu.
   }
 
-  return currentContent;
+  return {
+    content: currentContent,
+    options: { isPreview: false }
+  };
 }
 
-loadContent().then(setUpContent);
+loadContent().then(({ content, options }) => setUpContent(content, options));

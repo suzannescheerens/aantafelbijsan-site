@@ -16,8 +16,8 @@ paymentMethod: Betaling vooraf via Tikkie
 weekLabel: Weekmenu 16
 servingDate: woensdag 15 april
 tagline: Aan tafel bij San begint thuis
-dishTitle: Warm flatbread met sticky gehakt, avocado en huisgemaakt citroen-yoghurtsaus
-dishDescription: met frisse little gem salade
+dishTitle: Warm flatbread met sticky gehakt, avocado, huisgemaakte citroen-yoghurtsaus en frisse little gem salade
+dishDescription:
 invitation:Eet je mee?
 priceText: € 12,00 per persoon
 maxPortionsText: Maximaal 5 porties, op is op

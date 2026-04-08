@@ -147,11 +147,11 @@ h1 {
 
 .menu-sentence {
   margin: 62px auto 0;
-  max-width: 30ch;
+  max-width: 38ch;
   font-family: "Mulish", sans-serif;
-  font-size: clamp(1.28rem, 1.7vw, 1.58rem);
+  font-size: clamp(1.14rem, 1.45vw, 1.38rem);
   font-weight: 500;
-  line-height: 1.62;
+  line-height: 1.5;
   color: var(--muted);
   text-wrap: balance;
   hyphens: auto;
@@ -162,18 +162,18 @@ h1 {
 }
 
 #menuDishTitle {
-  max-width: 24ch;
+  max-width: 100%;
   margin: 0 auto;
   color: var(--ink);
   font-weight: 700;
-  line-height: 1.35;
+  line-height: 1.28;
 }
 
 #menuDishDescription {
-  max-width: 26ch;
-  margin: 0.45rem auto 0;
-  font-size: 0.94em;
-  line-height: 1.55;
+  max-width: 100%;
+  margin: 0.35rem auto 0;
+  font-size: 0.9em;
+  line-height: 1.45;
 }
 
 .invitation {

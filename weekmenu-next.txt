@@ -18,6 +18,6 @@ servingDate:
 tagline:
 dishTitle:
 dishDescription:
-invitation:
+invitation:Eet je mee?
 priceText:
 maxPortionsText:

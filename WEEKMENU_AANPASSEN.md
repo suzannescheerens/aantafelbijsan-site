@@ -13,6 +13,11 @@ Zo werkt het:
 4. Sla het bestand op
 5. De website zet het volgende menu automatisch live zodra `publishAt` is bereikt
 
+Handig om te weten:
+
+- De vaste gegevens staan in `weekmenu-next.txt` al voor je ingevuld
+- Je hoeft meestal alleen `publishAt`, `weekLabel`, `servingDate`, `tagline`, `dishTitle`, `dishDescription`, `invitation` en `priceText` aan te passen
+
 Voorbeeld:
 
 ```txt

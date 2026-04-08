@@ -1,18 +1,18 @@
 # Vul hier alvast je volgende menu in.
 # De website zet dit menu automatisch live zodra de datum en tijd bij publishAt is bereikt.
 # Gebruik hiervoor bijvoorbeeld: 2026-04-12T11:00:00+02:00
-# Laat een lege regel leeg als hij gelijk moet blijven aan het huidige menu.
+# De vaste gegevens zijn alvast ingevuld. Pas vooral het weekmenu en publishAt aan.
 
-businessName:
-businessSubtitle:
-whatsappNumber:
-instagramUrl:
-instagramLabel:
+businessName: Aan Tafel Bij San
+businessSubtitle: Wekelijks vers huisgemaakt afhaalmenu
+whatsappNumber: 31619912663
+instagramUrl: https://www.instagram.com/aantafelbijsan?igsh=b2RhMmhzMG9hcHN0&utm_source=qr
+instagramLabel: Volg Aan Tafel Bij San op Instagram
 publishAt: 2026-04-12T11:00:00+02:00
-orderDeadline:
-pickupMoment:
+orderDeadline: uiterlijk maandag voor 20:00
+pickupMoment: woensdag tussen 17:30 - 18:00
 pickupAddress:
-paymentMethod:
+paymentMethod: Betaling vooraf via Tikkie
 weekLabel:
 servingDate:
 tagline:

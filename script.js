@@ -5,6 +5,10 @@ const fallbackContent = {
   instagramUrl: "",
   instagramLabel: "Volg op Instagram",
   publishAt: "",
+  vacationEnabled: "false",
+  vacationTitle: "Ik ben even op vakantie",
+  vacationMessage: "Vanwege vakantie is bestellen tijdelijk niet mogelijk. Daarna ben ik weer terug met een nieuw weekmenu.",
+  vacationOrderText: "Tijdens mijn vakantie neem ik geen bestellingen aan. Via Instagram laat ik weten wanneer ik weer terug ben.",
   orderDeadline: "uiterlijk maandag voor 20:00",
   pickupMoment: "woensdag tussen 17:30 - 18:00",
   pickupAddress: "Bloesemgeel 13, Rosmalen",
@@ -33,13 +37,13 @@ function setVisibility(id, visible) {
   }
 }
 
-function setPreviewVisibility(visible) {
+function setPreviewVisibility(visible, label = "Preview") {
   const element = document.getElementById("previewNote");
   if (!element) {
     return;
   }
 
-  element.textContent = visible ? "Preview van het volgende menu" : "";
+  element.textContent = visible ? label : "";
   element.classList.toggle("is-visible", visible);
 }
 
@@ -101,6 +105,22 @@ function isScheduledMenuLive(content) {
   return Number.isFinite(publishTime) && Date.now() >= publishTime;
 }
 
+function isTruthy(value) {
+  return String(value).trim().toLowerCase() === "true";
+}
+
+function isWithinWindow(startAt, endAt) {
+  const now = Date.now();
+  const start = startAt ? Date.parse(startAt) : Number.NEGATIVE_INFINITY;
+  const end = endAt ? Date.parse(endAt) : Number.POSITIVE_INFINITY;
+
+  return Number.isFinite(start) && Number.isFinite(end) ? now >= start && now <= end : now >= start && now <= end;
+}
+
+function isVacationLive(content) {
+  return isTruthy(content.enabled) && isWithinWindow(content.startAt, content.endAt);
+}
+
 function getPreviewMode() {
   const params = new URLSearchParams(window.location.search);
   return params.get("preview");
@@ -121,7 +141,7 @@ function buildWhatsAppMessage(content) {
 function setUpContent(content, options = {}) {
   setText("businessName", content.businessName);
   setText("businessSubtitle", content.businessSubtitle);
-  setPreviewVisibility(Boolean(options.isPreview));
+  setPreviewVisibility(Boolean(options.isPreview), options.previewLabel || "Preview");
   setText("menuWeekLabel", content.weekLabel);
   setText("menuServingDate", content.servingDate);
   setText("menuTagline", content.tagline);
@@ -134,8 +154,15 @@ function setUpContent(content, options = {}) {
   setText("pickupMoment", `Afhalen: ${content.pickupMoment}`);
   setText("pickupAddress", content.pickupAddress);
   setText("maxPortionsText", content.maxPortionsText);
+  setText("vacationTitle", content.vacationTitle);
+  setText("vacationMessage", content.vacationMessage);
+  setText("vacationOrderText", content.vacationOrderText);
   setVisibility("pickupAddressItem", Boolean(content.pickupAddress));
   setVisibility("socialBlock", Boolean(content.instagramUrl));
+  setVisibility("vacationBlock", Boolean(options.isVacation));
+  setVisibility("vacationOrderNote", Boolean(options.isVacation));
+  setVisibility("menuContent", !options.isVacation);
+  setVisibility("orderContent", !options.isVacation);
   setLink("instagramLink", content.instagramUrl, content.instagramLabel);
 
   document.title = `${content.businessName} | ${content.weekLabel}`;
@@ -180,7 +207,7 @@ async function loadContent() {
     if (previewMode === "next") {
       return {
         content: scheduledContent,
-        options: { isPreview: true }
+        options: { isPreview: true, previewLabel: "Preview van het volgende menu" }
       };
     }
 
@@ -192,6 +219,37 @@ async function loadContent() {
     }
   } catch (error) {
     // Geen gepland menu gevonden; gebruik gewoon het live menu.
+  }
+
+  try {
+    const vacationText = await loadTextFile("vacation.txt");
+    const vacationContent = parseWeekmenuText(vacationText, currentContent);
+
+    if (previewMode === "vacation") {
+      return {
+        content: {
+          ...currentContent,
+          vacationTitle: vacationContent.title || fallbackContent.vacationTitle,
+          vacationMessage: vacationContent.message || fallbackContent.vacationMessage,
+          vacationOrderText: vacationContent.orderText || fallbackContent.vacationOrderText
+        },
+        options: { isPreview: true, isVacation: true, previewLabel: "Preview van vakantiebericht" }
+      };
+    }
+
+    if (isVacationLive(vacationContent)) {
+      return {
+        content: {
+          ...currentContent,
+          vacationTitle: vacationContent.title || fallbackContent.vacationTitle,
+          vacationMessage: vacationContent.message || fallbackContent.vacationMessage,
+          vacationOrderText: vacationContent.orderText || fallbackContent.vacationOrderText
+        },
+        options: { isPreview: false, isVacation: true }
+      };
+    }
+  } catch (error) {
+    // Geen vakantiebericht gevonden; gebruik gewoon het normale menu.
   }
 
   return {

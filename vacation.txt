@@ -1,0 +1,10 @@
+# Zet enabled op true als je een vakantieweek wilt tonen.
+# Met startAt en endAt kun je het automatisch laten ingaan en stoppen.
+# Voor een preview kun je kijken op: https://www.aantafelbijsan.nl/?preview=vacation
+
+enabled: false
+startAt:
+endAt:
+title: Ik ben even op vakantie
+message: Vanwege vakantie is bestellen tijdelijk niet mogelijk. Daarna ben ik weer terug met een nieuw weekmenu.
+orderText: Tijdens mijn vakantie neem ik geen bestellingen aan. Via Instagram laat ik weten wanneer ik weer terug ben.

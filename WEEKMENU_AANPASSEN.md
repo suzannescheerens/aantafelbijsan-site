@@ -4,6 +4,7 @@ Je hebt nu twee bestanden:
 
 - `/Users/suzannescheerens/Documents/Website aan tafel bij san/weekmenu.txt`
 - `/Users/suzannescheerens/Documents/Website aan tafel bij san/weekmenu-next.txt`
+- `/Users/suzannescheerens/Documents/Website aan tafel bij san/vacation.txt`
 
 Zo werkt het:
 
@@ -43,3 +44,31 @@ Belangrijk:
 - Laat een regel in `weekmenu-next.txt` leeg als die gelijk moet blijven aan het huidige menu
 
 De website leest automatisch `weekmenu.txt` in en schakelt automatisch over naar `weekmenu-next.txt` zodra `publishAt` is bereikt.
+
+## Vakantie instellen
+
+Gebruik hiervoor:
+
+- `/Users/suzannescheerens/Documents/Website aan tafel bij san/vacation.txt`
+
+Zo werkt het:
+
+1. Zet `enabled: true`
+2. Vul `startAt` en `endAt` in
+3. Pas eventueel `title`, `message` en `orderText` aan
+4. Tijdens die periode laat de site een vakantiemelding zien en verdwijnt de bestelknop
+
+Voorbeeld:
+
+```txt
+enabled: true
+startAt: 2026-05-01T00:00:00+02:00
+endAt: 2026-05-08T23:59:00+02:00
+title: Ik ben even op vakantie
+message: Van 1 t/m 8 mei ben ik er even tussenuit. Daarna ben ik weer terug met een nieuw weekmenu.
+orderText: Tijdens mijn vakantie neem ik geen bestellingen aan. Via Instagram laat ik weten wanneer ik weer terug ben.
+```
+
+Preview bekijken:
+
+- `https://www.aantafelbijsan.nl/?preview=vacation`

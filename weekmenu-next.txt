@@ -1,0 +1,23 @@
+# Vul hier alvast je volgende menu in.
+# De website zet dit menu automatisch live zodra de datum en tijd bij publishAt is bereikt.
+# Gebruik hiervoor bijvoorbeeld: 2026-04-12T11:00:00+02:00
+# Laat een lege regel leeg als hij gelijk moet blijven aan het huidige menu.
+
+businessName:
+businessSubtitle:
+whatsappNumber:
+instagramUrl:
+instagramLabel:
+publishAt: 2026-04-12T11:00:00+02:00
+orderDeadline:
+pickupMoment:
+pickupAddress:
+paymentMethod:
+weekLabel:
+servingDate:
+tagline:
+dishTitle:
+dishDescription:
+invitation:
+priceText:
+maxPortionsText:

@@ -4,6 +4,7 @@ const fallbackContent = {
   whatsappNumber: "31619912663",
   instagramUrl: "",
   instagramLabel: "Volg op Instagram",
+  publishAt: "",
   orderDeadline: "uiterlijk maandag voor 20:00",
   pickupMoment: "woensdag tussen 17:30 - 18:00",
   pickupAddress: "Bloesemgeel 13, Rosmalen",
@@ -54,8 +55,8 @@ function setLink(id, href, label) {
   }
 }
 
-function parseWeekmenuText(text) {
-  const result = { ...fallbackContent };
+function parseWeekmenuText(text, baseContent = fallbackContent) {
+  const result = { ...baseContent };
   const lines = text.split(/\r?\n/);
 
   for (const rawLine of lines) {
@@ -79,6 +80,15 @@ function parseWeekmenuText(text) {
   }
 
   return result;
+}
+
+function isScheduledMenuLive(content) {
+  if (!content.publishAt) {
+    return false;
+  }
+
+  const publishTime = Date.parse(content.publishAt);
+  return Number.isFinite(publishTime) && Date.now() >= publishTime;
 }
 
 function buildWhatsAppMessage(content) {
@@ -126,19 +136,38 @@ function setUpContent(content) {
   });
 }
 
-async function loadContent() {
-  try {
-    const response = await fetch("weekmenu.txt", { cache: "no-store" });
+async function loadTextFile(path) {
+  const response = await fetch(path, { cache: "no-store" });
 
-    if (!response.ok) {
-      throw new Error("weekmenu.txt kon niet worden geladen");
-    }
-
-    const text = await response.text();
-    return parseWeekmenuText(text);
-  } catch (error) {
-    return fallbackContent;
+  if (!response.ok) {
+    throw new Error(`${path} kon niet worden geladen`);
   }
+
+  return response.text();
+}
+
+async function loadContent() {
+  let currentContent = fallbackContent;
+
+  try {
+    const currentText = await loadTextFile("weekmenu.txt");
+    currentContent = parseWeekmenuText(currentText);
+  } catch (error) {
+    currentContent = fallbackContent;
+  }
+
+  try {
+    const scheduledText = await loadTextFile("weekmenu-next.txt");
+    const scheduledContent = parseWeekmenuText(scheduledText, currentContent);
+
+    if (isScheduledMenuLive(scheduledContent)) {
+      return scheduledContent;
+    }
+  } catch (error) {
+    // Geen gepland menu gevonden; gebruik gewoon het live menu.
+  }
+
+  return currentContent;
 }
 
 loadContent().then(setUpContent);

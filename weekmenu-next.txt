@@ -20,4 +20,4 @@ dishTitle:
 dishDescription:
 invitation:Eet je mee?
 priceText: € 12,00 per persoon
-maxPortionsText:
+maxPortionsText: Maximaal 5 porties, op is op

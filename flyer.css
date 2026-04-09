@@ -204,6 +204,71 @@ h1 {
   text-transform: uppercase;
 }
 
+.share-panel {
+  width: min(100vw - 40px, 1080px);
+  padding: 20px 22px;
+  border: 1px solid rgba(123, 95, 79, 0.14);
+  border-radius: 24px;
+  background: rgba(255, 250, 246, 0.82);
+  box-shadow: 0 12px 35px rgba(78, 58, 47, 0.08);
+  text-align: center;
+}
+
+.share-title {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.7rem, 2.8vw, 2.35rem);
+  line-height: 1;
+  color: var(--ink);
+}
+
+.share-copy {
+  margin: 10px auto 0;
+  max-width: 48ch;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.share-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.share-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 170px;
+  padding: 0.85rem 1.15rem;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.98rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    opacity 160ms ease;
+}
+
+.share-button:hover,
+.share-button:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(78, 58, 47, 0.14);
+}
+
+.share-button-whatsapp {
+  background: linear-gradient(135deg, #1ea35a 0%, #13854a 100%);
+}
+
+.share-button-mail {
+  background: linear-gradient(135deg, #9f5b42 0%, #844631 100%);
+}
+
 @media (max-width: 760px) {
   .flyer-frame {
     width: min(100vw - 24px, 760px);
@@ -223,6 +288,16 @@ h1 {
 
   .menu-copy {
     max-width: 22ch;
+  }
+
+  .share-panel {
+    width: min(100vw - 24px, 760px);
+    padding: 18px 16px;
+    border-radius: 20px;
+  }
+
+  .share-button {
+    width: 100%;
   }
 
   .separator {

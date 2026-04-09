@@ -1,9 +1,12 @@
 :root {
-  --paper: #f5e9dd;
+  --paper: #f4e9de;
+  --paper-sheet: #f6ede5;
   --ink: #171311;
   --muted: #4e443f;
   --frame: rgba(123, 95, 79, 0.18);
-  --accent: #8b5a44;
+  --whatsapp: #1f8f53;
+  --whatsapp-dark: #187444;
+  --accent: #8d4a36;
 }
 
 * {
@@ -20,39 +23,37 @@ body {
   font-family: "Mulish", sans-serif;
 }
 
-.flyer-page {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 22px;
+.menu-page {
+  width: min(100%, 860px);
+  margin: 0 auto;
+  padding: 34px 22px 40px;
 }
 
 .flyer-frame {
-  width: min(calc(100vw - 44px), 1080px);
-  aspect-ratio: 1 / 1;
   background:
     radial-gradient(circle at top left, rgba(208, 174, 156, 0.12), transparent 28%),
-    linear-gradient(180deg, var(--paper) 0%, #f0e0d3 100%);
+    linear-gradient(180deg, #efe1d4 0%, #ead9cb 100%);
   border: 1px solid var(--frame);
   box-shadow:
     0 20px 55px rgba(78, 58, 47, 0.12),
     0 2px 10px rgba(78, 58, 47, 0.05);
-  padding: clamp(30px, 4.2vw, 44px);
-  display: grid;
-  grid-template-rows: auto 1fr auto auto;
+  padding: clamp(24px, 4vw, 34px);
+}
+
+.flyer-layout {
+  width: 100%;
 }
 
 .brand-header {
   display: grid;
-  grid-template-columns: minmax(92px, 120px) minmax(0, 1fr);
-  gap: clamp(18px, 2.4vw, 32px);
+  grid-template-columns: minmax(78px, 108px) minmax(0, 1fr);
+  gap: clamp(14px, 2.2vw, 28px);
   align-items: center;
 }
 
 .brand-seal {
-  width: clamp(86px, 10vw, 120px);
-  height: clamp(86px, 10vw, 120px);
+  width: 108px;
+  height: 108px;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -71,7 +72,7 @@ body {
 h1,
 .subtitle,
 .week-line,
-.menu-copy,
+h2,
 .price,
 .payment-note,
 .details-list {
@@ -80,121 +81,148 @@ h1,
 
 h1 {
   margin: 0;
-  font-size: clamp(2.1rem, 5.3vw, 4.55rem);
+  max-width: 100%;
+  font-size: clamp(1.85rem, 4.6vw, 4.1rem);
   line-height: 0.9;
   font-weight: 400;
+  letter-spacing: 0;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .subtitle {
   margin: 14px 0 0;
-  font-size: clamp(1.5rem, 2.95vw, 2.45rem);
+  font-size: clamp(1.45rem, 3vw, 2.15rem);
   line-height: 1.05;
   color: var(--muted);
 }
 
 .menu-block {
-  padding-top: clamp(44px, 8vw, 94px);
+  padding-top: 72px;
   text-align: center;
 }
 
 .week-line {
   margin: 0;
-  font-size: clamp(2rem, 4.2vw, 3.25rem);
+  font-size: clamp(2.2rem, 4.8vw, 3.25rem);
   line-height: 1;
   color: var(--muted);
 }
 
 .week-icon {
   display: inline-block;
-  margin-right: 0.2em;
+  margin-right: 10px;
   font-size: 0.8em;
   opacity: 0.55;
 }
 
 .tagline {
-  margin: clamp(38px, 6vw, 72px) 0 0;
-  font-size: clamp(1.85rem, 3vw, 2.5rem);
+  margin: 70px 0 0;
+  font-size: clamp(1.8rem, 3vw, 2.35rem);
   font-style: italic;
   font-weight: 800;
 }
 
-.menu-copy {
-  margin: clamp(64px, 9vw, 114px) auto 0;
-  max-width: 24ch;
-  font-size: clamp(2.1rem, 4.2vw, 3.2rem);
+h2 {
+  margin: 104px auto 0;
+  max-width: 14ch;
+  font-size: clamp(2.35rem, 4.8vw, 3.35rem);
   line-height: 1.08;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--muted);
 }
 
-.menu-copy-secondary {
-  margin-top: 0.1em;
+.description {
+  margin: 6px auto 0;
+  max-width: 21ch;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.12;
+  color: var(--muted);
+  font-family: "Cormorant Garamond", serif;
 }
 
 .invitation {
-  margin: clamp(44px, 6vw, 78px) 0 0;
-  font-size: clamp(1.95rem, 3vw, 2.6rem);
+  margin: 72px 0 0;
+  font-size: clamp(1.9rem, 3vw, 2.45rem);
   font-style: italic;
   font-weight: 800;
 }
 
 .details {
-  align-self: end;
-  text-align: left;
+  margin-top: 72px;
 }
 
 .price {
   margin: 0;
-  font-size: clamp(2.55rem, 4.8vw, 4.1rem);
+  font-size: clamp(2.8rem, 5vw, 4rem);
   line-height: 1;
   font-weight: 700;
 }
 
 .payment-note {
   margin: 2px 0 0;
-  font-size: clamp(1.8rem, 3.2vw, 2.45rem);
+  font-size: clamp(1.9rem, 3.5vw, 2.6rem);
   line-height: 1.05;
   font-style: italic;
   font-weight: 600;
 }
 
 .details-list {
-  margin: clamp(24px, 3.5vw, 38px) 0 0;
+  margin: 34px 0 0;
   padding-left: 1.2em;
   color: var(--muted);
-  font-size: clamp(1.55rem, 2.8vw, 2.3rem);
+  font-size: clamp(1.85rem, 3vw, 2.35rem);
   line-height: 1.3;
 }
 
-.detail-separator {
-  margin: 0 0.45rem;
-  opacity: 0.45;
+.cta-panel {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid rgba(123, 95, 79, 0.12);
+  padding-top: 26px;
 }
 
-.flyer-footer {
-  margin-top: clamp(18px, 2.5vw, 28px);
-  padding-top: 16px;
-  border-top: 1px solid rgba(123, 95, 79, 0.12);
-  text-align: center;
+.whatsapp-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 0.9rem 1.5rem;
+  border-radius: 999px;
+  background: var(--whatsapp);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+  box-shadow: 0 14px 32px rgba(31, 143, 83, 0.18);
+  transition:
+    transform 160ms ease,
+    background 160ms ease;
+}
+
+.whatsapp-button:hover,
+.whatsapp-button:focus-visible {
+  transform: translateY(-2px);
+  background: var(--whatsapp-dark);
 }
 
 .instagram-line {
   margin: 0;
   color: var(--accent);
-  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  font-size: clamp(0.98rem, 1.55vw, 1.28rem);
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
 }
 
 @media (max-width: 760px) {
-  .flyer-page {
-    padding: 10px;
+  .menu-page {
+    padding: 24px 14px 30px;
   }
 
   .flyer-frame {
-    width: min(calc(100vw - 20px), 760px);
-    padding: 18px 16px 20px;
+    padding: 20px 16px 24px;
   }
 
   .brand-header {
@@ -206,36 +234,32 @@ h1 {
 
   h1 {
     font-size: clamp(1.9rem, 8vw, 3.1rem);
+    white-space: normal;
+  }
+
+  .brand-seal {
+    width: 96px;
+    height: 96px;
+  }
+
+  .brand-seal img {
+    width: 100%;
   }
 
   .menu-block {
-    padding-top: 30px;
+    padding-top: 46px;
   }
 
   .tagline {
-    margin-top: 28px;
+    margin-top: 46px;
   }
 
-  .menu-copy {
-    margin-top: 46px;
-    max-width: 19ch;
-    font-size: clamp(1.8rem, 5.6vw, 2.45rem);
+  h2 {
+    margin-top: 74px;
   }
 
   .invitation,
   .details {
-    margin-top: 34px;
-  }
-
-  .details-list {
-    font-size: clamp(1.25rem, 4vw, 1.7rem);
-  }
-
-  .detail-separator {
-    display: none;
-  }
-
-  .details-list li span {
-    display: block;
+    margin-top: 52px;
   }
 }

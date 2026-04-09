@@ -1,6 +1,7 @@
 const fallbackContent = {
   businessName: "Aan Tafel Bij San",
   businessSubtitle: "Wekelijks vers huisgemaakt afhaalmenu",
+  whatsappNumber: "31619912663",
   instagramUrl: "",
   instagramLabel: "Volg op Instagram",
   publishAt: "",
@@ -64,6 +65,18 @@ function isScheduledMenuLive(content) {
 function getPreviewMode() {
   const params = new URLSearchParams(window.location.search);
   return params.get("preview");
+}
+
+function buildWhatsAppMessage(content) {
+  return [
+    `Hallo San, ik wil graag bestellen voor ${content.weekLabel}.`,
+    "",
+    `Menu: ${content.dishTitle}`,
+    `Datum: ${content.servingDate}`,
+    "",
+    "Naam:",
+    "Aantal porties:"
+  ].join("\n");
 }
 
 function setPreviewBanner(visible, label = "") {
@@ -141,7 +154,20 @@ function setUpContent(content, isPreview) {
   setText("pickupAddress", content.pickupAddress);
   setText("maxPortionsText", content.maxPortionsText);
 
-  document.title = `${content.businessName} | Flyer ${content.weekLabel}`;
+  document.title = `${content.businessName} | ${content.weekLabel}`;
+
+  const whatsAppLink = document.getElementById("whatsAppLink");
+  if (whatsAppLink) {
+    const buildFreshWhatsAppUrl = () => {
+      const message = encodeURIComponent(buildWhatsAppMessage(content));
+      return `https://wa.me/${content.whatsappNumber}?text=${message}`;
+    };
+
+    whatsAppLink.href = buildFreshWhatsAppUrl();
+    whatsAppLink.addEventListener("click", () => {
+      whatsAppLink.href = buildFreshWhatsAppUrl();
+    });
+  }
 }
 
 loadContent().then(({ content, isPreview }) => setUpContent(content, isPreview));

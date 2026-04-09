@@ -5,12 +5,6 @@ const fallbackContent = {
   instagramUrl: "",
   instagramLabel: "Volg op Instagram",
   publishAt: "",
-  vacationEnabled: "false",
-  vacationKicker: "Tijdelijk geen menu",
-  vacationTitle: "Deze week geen bestelmoment",
-  vacationMessage: "Bestellen is deze week tijdelijk niet mogelijk. Volgende week ben ik er weer met een nieuw weekmenu.",
-  vacationOrderTitle: "Bestellen tijdelijk gesloten",
-  vacationOrderText: "Deze week neem ik geen bestellingen aan. Via Instagram laat ik weten wanneer er weer een nieuw weekmenu klaarstaat.",
   orderDeadline: "uiterlijk maandag voor 20:00",
   pickupMoment: "woensdag tussen 17:30 - 18:00",
   pickupAddress: "Bloesemgeel 13, Rosmalen",
@@ -107,22 +101,6 @@ function isScheduledMenuLive(content) {
   return Number.isFinite(publishTime) && Date.now() >= publishTime;
 }
 
-function isTruthy(value) {
-  return String(value).trim().toLowerCase() === "true";
-}
-
-function isWithinWindow(startAt, endAt) {
-  const now = Date.now();
-  const start = startAt ? Date.parse(startAt) : Number.NEGATIVE_INFINITY;
-  const end = endAt ? Date.parse(endAt) : Number.POSITIVE_INFINITY;
-
-  return Number.isFinite(start) && Number.isFinite(end) ? now >= start && now <= end : now >= start && now <= end;
-}
-
-function isVacationLive(content) {
-  return isTruthy(content.enabled) && isWithinWindow(content.startAt, content.endAt);
-}
-
 function getPreviewMode() {
   const params = new URLSearchParams(window.location.search);
   return params.get("preview");
@@ -156,17 +134,8 @@ function setUpContent(content, options = {}) {
   setText("pickupMoment", `Afhalen: ${content.pickupMoment}`);
   setText("pickupAddress", content.pickupAddress);
   setText("maxPortionsText", content.maxPortionsText);
-  setText("vacationKicker", content.vacationKicker);
-  setText("vacationTitle", content.vacationTitle);
-  setText("vacationMessage", content.vacationMessage);
-  setText("vacationOrderTitle", content.vacationOrderTitle);
-  setText("vacationOrderText", content.vacationOrderText);
   setVisibility("pickupAddressItem", Boolean(content.pickupAddress));
   setVisibility("socialBlock", Boolean(content.instagramUrl));
-  setVisibility("vacationBlock", Boolean(options.isVacation));
-  setVisibility("vacationOrderNote", Boolean(options.isVacation));
-  setVisibility("menuContent", !options.isVacation);
-  setVisibility("orderContent", !options.isVacation);
   setLink("instagramLink", content.instagramUrl, content.instagramLabel);
 
   document.title = `${content.businessName} | ${content.weekLabel}`;
@@ -223,41 +192,6 @@ async function loadContent() {
     }
   } catch (error) {
     // Geen gepland menu gevonden; gebruik gewoon het live menu.
-  }
-
-  try {
-    const vacationText = await loadTextFile("vacation.txt");
-    const vacationContent = parseWeekmenuText(vacationText, currentContent);
-
-    if (previewMode === "vacation") {
-      return {
-        content: {
-          ...currentContent,
-          vacationKicker: fallbackContent.vacationKicker,
-          vacationTitle: vacationContent.title || fallbackContent.vacationTitle,
-          vacationMessage: vacationContent.message || fallbackContent.vacationMessage,
-          vacationOrderTitle: fallbackContent.vacationOrderTitle,
-          vacationOrderText: vacationContent.orderText || fallbackContent.vacationOrderText
-        },
-        options: { isPreview: true, isVacation: true, previewLabel: "Preview van vakantiebericht" }
-      };
-    }
-
-    if (isVacationLive(vacationContent)) {
-      return {
-        content: {
-          ...currentContent,
-          vacationKicker: fallbackContent.vacationKicker,
-          vacationTitle: vacationContent.title || fallbackContent.vacationTitle,
-          vacationMessage: vacationContent.message || fallbackContent.vacationMessage,
-          vacationOrderTitle: fallbackContent.vacationOrderTitle,
-          vacationOrderText: vacationContent.orderText || fallbackContent.vacationOrderText
-        },
-        options: { isPreview: false, isVacation: true }
-      };
-    }
-  } catch (error) {
-    // Geen vakantiebericht gevonden; gebruik gewoon het normale menu.
   }
 
   return {

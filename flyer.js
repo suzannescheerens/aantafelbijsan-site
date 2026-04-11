@@ -26,6 +26,13 @@ function setText(id, value) {
   }
 }
 
+function setVisibility(id, visible) {
+  const element = document.getElementById(id);
+  if (element) {
+    element.hidden = !visible;
+  }
+}
+
 function parseWeekmenuText(text, baseContent = fallbackContent) {
   const result = { ...baseContent };
   const lines = text.split(/\r?\n/);
@@ -135,12 +142,15 @@ function setUpContent(content, isPreview) {
   setText("menuTagline", content.tagline);
   setText("menuDishTitle", content.dishTitle);
   setText("menuDishDescription", content.dishDescription);
+  setVisibility("menuDishDescription", Boolean(content.dishDescription));
   setText("menuInvitation", content.invitation);
   setText("menuPrice", content.priceText);
   setText("paymentMethod", content.paymentMethod);
   setText("orderDeadline", `Bestellen: ${content.orderDeadline}`);
   setText("pickupMoment", `Afhalen: ${content.pickupMoment}`);
   setText("pickupAddress", content.pickupAddress);
+  setVisibility("pickupAddress", Boolean(content.pickupAddress));
+  setVisibility("pickupAddressSeparator", Boolean(content.pickupAddress));
   setText("maxPortionsText", content.maxPortionsText);
 
   document.title = `${content.businessName} | ${content.weekLabel}`;

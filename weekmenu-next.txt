@@ -15,7 +15,7 @@ pickupAddress:
 paymentMethod: Na je bestelling ontvang je een betaalverzoek.
 weekLabel: Weekmenu 35
 servingDate: woensdag 26 augustus
-tagline: Vers en met liefde bereid
+tagline: zomers, romig en boordevol smaak
 dishTitle: Open lasagna met courgette, pesto,
 dishDescription: cherrytomaat & burrata
 invitation: Eet je mee?

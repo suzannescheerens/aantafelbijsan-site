@@ -8,16 +8,16 @@ businessSubtitle: Wekelijks vers huisgemaakt afhaalmenu
 whatsappNumber: 31619912663
 instagramUrl: https://www.instagram.com/aantafelbijsan?igsh=b2RhMmhzMG9hcHN0&utm_source=qr
 instagramLabel: Volg Aan Tafel Bij San op Instagram
-publishAt: 2026-06-14T11:00:00+02:00
+publishAt: 2026-08-23T11:00:00+02:00
 orderDeadline: uiterlijk maandag voor 20:00
 pickupMoment: woensdag tussen 17:30 - 18:00
 pickupAddress:
 paymentMethod: Na je bestelling ontvang je een betaalverzoek.
-weekLabel: Weekmenu 25
-servingDate: woensdag 17 juni
+weekLabel: Weekmenu 35
+servingDate: woensdag 26 augustus
 tagline: Vers en met liefde bereid
-dishTitle: Romige linguine met spinazie, krokante pancetta,
-dishDescription: Parmezaanse kaas en citroenzest 🍝
+dishTitle: Open lasagna met courgette, pesto,
+dishDescription: cherrytomaat & burrata
 invitation: Eet je mee?
 orderLabel: Bestellen
 priceText: € 12,00 per persoon

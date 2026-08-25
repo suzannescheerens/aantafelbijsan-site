@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wekelijks afhaalmenu in Rosmalen | Aan Tafel Bij San</title>
+    <meta
+      name="description"
+      content="Bekijk het wekelijkse huisgemaakte afhaalmenu van Aan Tafel Bij San in Rosmalen en bestel direct via WhatsApp."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=Mulish:wght@400;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260417-about" />
+    <style>
+      body.content-loading .hero-layout {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .hero-layout {
+        transition: opacity 140ms ease;
+      }
+
+      .page {
+        padding: 40px 0 84px;
+      }
+
+      .brand-header {
+        margin-bottom: 30px;
+      }
+
+      .top-nav {
+        display: flex;
+        justify-content: flex-start;
+        margin: 0 0 34px;
+      }
+
+      .top-tabs {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 8px;
+        border: 1px solid rgba(63, 42, 34, 0.1);
+        border-radius: 999px;
+        background: rgba(255, 251, 247, 0.72);
+        box-shadow: 0 14px 30px rgba(79, 54, 42, 0.08);
+      }
+
+      .top-tab {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0.78rem 1.15rem;
+        border-radius: 999px;
+        color: var(--muted);
+        text-decoration: none;
+        font-weight: 800;
+        letter-spacing: 0.01em;
+        transition:
+          transform 160ms ease,
+          background 160ms ease,
+          color 160ms ease;
+      }
+
+      .top-tab:hover,
+      .top-tab:focus-visible {
+        transform: translateY(-2px);
+        color: var(--ink);
+      }
+
+      .top-tab.is-active {
+        background: var(--instagram);
+        color: #fff;
+        box-shadow: 0 10px 22px rgba(141, 74, 54, 0.18);
+      }
+
+      .hero-layout {
+        gap: 28px;
+        align-items: start;
+      }
+
+      .menu-card,
+      .order-card {
+        box-shadow: 0 22px 42px rgba(79, 54, 42, 0.08);
+      }
+
+      .payment-note {
+        font-size: clamp(1.08rem, 1.35vw, 1.3rem);
+        line-height: 1.12;
+      }
+
+      .whatsapp-button {
+        min-height: 54px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 14px 28px rgba(79, 54, 42, 0.14);
+      }
+
+      .social-block {
+        padding-top: 2px;
+      }
+
+      .page-footer {
+        margin-top: 30px;
+        padding: 20px 8px 0;
+        border-top: 1px solid rgba(63, 42, 34, 0.1);
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          padding-top: 28px;
+          padding-bottom: 52px;
+        }
+      }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EJPSFYHC73"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-EJPSFYHC73");
+    </script>
+  </head>
+  <body class="content-loading">
+    <main class="page">
+      <header class="brand-header">
+        <div class="brand-seal" aria-hidden="true">
+          <img src="brand-seal.png" alt="" />
+        </div>
+        <div class="brand-copy">
+          <h1 id="businessName">Aan Tafel Bij San</h1>
+          <p class="subtitle" id="businessSubtitle">
+            Wekelijks vers huisgemaakt afhaalmenu
+          </p>
+          <p class="preview-note" id="previewNote"></p>
+        </div>
+      </header>
+
+      <div class="top-nav" aria-label="Navigatie">
+        <nav class="top-tabs">
+          <a class="top-tab" href="index.html">Borrelbox</a>
+          <a class="top-tab is-active" href="weekmenu.html">Weekmenu</a>
+          <a class="top-tab" href="over-san.html">Over San &amp; sfeer</a>
+        </nav>
+      </div>
+
+      <section class="hero-layout">
+        <section class="menu-card">
+          <div id="menuContent">
+            <p class="week-line">
+              <span id="menuWeekLabel">Weekmenu 21</span>
+              <span aria-hidden="true">|</span>
+              <span id="menuServingDate">woensdag 20 mei</span>
+            </p>
+
+            <p class="local-note">Huisgemaakt afhaalmenu in Rosmalen</p>
+            <p class="tagline" id="menuTagline">Fris comfort food</p>
+
+            <p class="menu-sentence">
+              <span id="menuDishTitle">Zomerse salade met gebakken perzik,</span>
+              <span id="menuDishDescription">feta, serranoham en gebakken krieltjes</span>
+            </p>
+            <p class="invitation" id="menuInvitation">Eet je mee?</p>
+          </div>
+
+        </section>
+
+        <aside class="order-card">
+          <div id="orderContent">
+            <p class="order-label" id="orderLabel">Bestellen</p>
+            <p class="price" id="menuPrice">€ 12,00 per persoon</p>
+            <p class="payment-note" id="paymentMethod">Na je bestelling ontvang je een betaalverzoek.</p>
+
+            <ul class="details-list">
+              <li id="orderDeadline">Bestellen: uiterlijk maandag voor 20:00</li>
+              <li id="pickupMomentItem">
+                <span id="pickupMoment">Afhalen: woensdag tussen 17:30 - 18:00</span>
+              </li>
+              <li id="pickupAddressItem">
+                <span id="pickupAddress">Bloesemgeel 13, Rosmalen</span>
+              </li>
+              <li id="maxPortionsText">Maximaal 5 porties, op is op</li>
+            </ul>
+
+            <div class="action-group">
+              <a class="whatsapp-button" id="whatsAppLink" href="#">
+                Bestel via WhatsApp
+              </a>
+            </div>
+
+            <p class="trust-note" id="trustNote">
+              Je bestelling komt direct bij mij binnen via WhatsApp.
+            </p>
+          </div>
+
+          <div class="social-block" id="socialBlock" hidden>
+            <p class="social-label">Meer Van Aan Tafel Bij San</p>
+            <p class="social-note">Volg me op Instagram voor nieuwe menu's en updates.</p>
+            <a
+              class="instagram-link"
+              id="instagramLink"
+              href="#"
+              aria-label="Volg Aan Tafel Bij San op Instagram"
+              title="Volg Aan Tafel Bij San op Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+              hidden
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm8.95 1.75a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1ZM12 6.75A5.25 5.25 0 1 1 6.75 12 5.26 5.26 0 0 1 12 6.75Zm0 1.5A3.75 3.75 0 1 0 15.75 12 3.75 3.75 0 0 0 12 8.25Z"
+                />
+              </svg>
+            </a>
+          </div>
+        </aside>
+      </section>
+
+      <p class="page-footer">Vers huisgemaakt in Rosmalen, met aandacht bereid door San.</p>
+    </main>
+
+    <script src="script.js?v=20260517-livefix"></script>
+  </body>
+</html>

@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Aan Tafel Bij San</title>
+    <meta
+      name="description"
+      content="Neem contact op met Aan Tafel Bij San voor vragen, overleg of mogelijkheden."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Mulish:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260617-borrelbox" />
+    <style>
+      .contact-shell {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 40px 0 84px;
+      }
+
+      .brand-header {
+        margin-bottom: 30px;
+      }
+
+      .top-nav {
+        display: flex;
+        justify-content: flex-start;
+        margin: 0 0 28px;
+      }
+
+      .top-tabs {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 8px;
+        border: 1px solid rgba(63, 42, 34, 0.1);
+        border-radius: 999px;
+        background: rgba(255, 251, 247, 0.72);
+        box-shadow: 0 14px 30px rgba(79, 54, 42, 0.08);
+      }
+
+      .top-tab {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0.78rem 1.15rem;
+        border-radius: 999px;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 800;
+        letter-spacing: 0.01em;
+        transition:
+          transform 160ms ease,
+          background 160ms ease,
+          color 160ms ease;
+      }
+
+      .top-tab:hover,
+      .top-tab:focus-visible {
+        transform: translateY(-2px);
+        color: var(--ink);
+      }
+
+      .top-tab.is-active {
+        background: var(--instagram);
+        color: #fff;
+        box-shadow: 0 10px 22px rgba(141, 74, 54, 0.18);
+      }
+
+      .contact-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+        gap: 28px;
+        align-items: start;
+      }
+
+      .contact-card {
+        border: 1px solid var(--line);
+        border-radius: 34px;
+        box-shadow: var(--shadow);
+        background:
+          linear-gradient(180deg, rgba(255, 250, 245, 0.96), rgba(243, 232, 221, 0.9)),
+          linear-gradient(135deg, rgba(255, 255, 255, 0.35), transparent 40%);
+      }
+
+      .contact-intro {
+        padding: clamp(30px, 4vw, 46px);
+      }
+
+      .contact-kicker {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .contact-title {
+        margin: 12px 0 0;
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(2.5rem, 4.7vw, 4rem);
+        line-height: 0.94;
+        font-weight: 600;
+      }
+
+      .contact-copy {
+        margin: 20px 0 0;
+        color: var(--muted);
+        font-size: 1.02rem;
+        line-height: 1.75;
+      }
+
+      .mail-card {
+        margin-top: 18px;
+        padding: 18px 20px;
+        border: 1px solid rgba(63, 42, 34, 0.1);
+        border-radius: 22px;
+        background: rgba(255, 251, 247, 0.72);
+      }
+
+      .mail-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .mail-card a {
+        display: inline-flex;
+        margin-top: 8px;
+        color: var(--instagram-dark);
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .contact-form-card {
+        padding: clamp(24px, 3.5vw, 34px);
+      }
+
+      .contact-form {
+        display: grid;
+        gap: 16px;
+      }
+
+      .form-row {
+        display: grid;
+        gap: 7px;
+      }
+
+      .form-label {
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .form-input,
+      .form-textarea {
+        width: 100%;
+        border: 1px solid rgba(63, 42, 34, 0.16);
+        border-radius: 18px;
+        background: rgba(255, 251, 247, 0.88);
+        color: var(--ink);
+        font: inherit;
+        font-size: 1rem;
+      }
+
+      .form-input {
+        min-height: 50px;
+        padding: 0 15px;
+      }
+
+      .form-textarea {
+        min-height: 150px;
+        padding: 14px 15px;
+        resize: vertical;
+      }
+
+      .form-input:focus,
+      .form-textarea:focus {
+        outline: 2px solid rgba(141, 74, 54, 0.24);
+        border-color: rgba(141, 74, 54, 0.46);
+      }
+
+      .contact-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 54px;
+        margin-top: 4px;
+        padding: 0.95rem 1.3rem;
+        border: 0;
+        border-radius: 999px;
+        background: var(--instagram);
+        color: #fff;
+        box-shadow: 0 14px 28px rgba(79, 54, 42, 0.14);
+        cursor: pointer;
+        font: inherit;
+        font-weight: 800;
+        text-decoration: none;
+        transition:
+          transform 160ms ease,
+          background 160ms ease;
+      }
+
+      .contact-button:hover,
+      .contact-button:focus-visible {
+        transform: translateY(-2px);
+        background: var(--instagram-dark);
+      }
+
+      .page-footer {
+        margin-top: 30px;
+        padding: 20px 8px 0;
+        border-top: 1px solid rgba(63, 42, 34, 0.1);
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      @media (max-width: 820px) {
+        .contact-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .contact-shell {
+          width: min(100% - 22px, 1120px);
+          padding-top: 28px;
+          padding-bottom: 52px;
+        }
+      }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EJPSFYHC73"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-EJPSFYHC73");
+    </script>
+  </head>
+  <body>
+    <main class="contact-shell">
+      <header class="brand-header">
+        <div class="brand-seal" aria-hidden="true">
+          <img src="brand-seal.png" alt="" />
+        </div>
+        <div class="brand-copy">
+          <h1>Aan Tafel Bij San</h1>
+          <p class="subtitle">Contact</p>
+        </div>
+      </header>
+
+      <div class="top-nav" aria-label="Navigatie">
+        <nav class="top-tabs">
+          <a class="top-tab" href="index.html">Borrelbox</a>
+          <a class="top-tab" href="weekmenu.html">Weekmenu</a>
+          <a class="top-tab" href="over-san.html">Over San &amp; sfeer</a>
+          <a class="top-tab is-active" href="contact.html">Contact</a>
+        </nav>
+      </div>
+
+      <section class="contact-layout" aria-labelledby="contactTitle">
+        <div class="contact-card contact-intro">
+          <p class="contact-kicker">Neem contact op</p>
+          <h2 class="contact-title" id="contactTitle">Waar kan ik je mee helpen?</h2>
+          <p class="contact-copy">
+            Heb je een vraag of wil je even overleggen wat er mogelijk is? Vul dan gerust het
+            contactformulier in. Ik neem zo snel mogelijk contact met je op.
+          </p>
+        </div>
+
+        <div class="contact-card contact-form-card">
+          <form class="contact-form" action="https://formsubmit.co/aantafelbijsan@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Nieuw contactbericht via Aan Tafel Bij San" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off" hidden />
+
+            <div class="form-row">
+              <label class="form-label" for="contactName">Naam</label>
+              <input class="form-input" id="contactName" name="naam" type="text" autocomplete="name" required />
+            </div>
+
+            <div class="form-row">
+              <label class="form-label" for="contactEmail">E-mailadres</label>
+              <input class="form-input" id="contactEmail" name="email" type="email" autocomplete="email" required />
+            </div>
+
+            <div class="form-row">
+              <label class="form-label" for="contactPhone">Telefoonnummer</label>
+              <input class="form-input" id="contactPhone" name="telefoonnummer" type="tel" autocomplete="tel" />
+            </div>
+
+            <div class="form-row">
+              <label class="form-label" for="contactMessage">Bericht</label>
+              <textarea class="form-textarea" id="contactMessage" name="bericht" required></textarea>
+            </div>
+
+            <button class="contact-button" type="submit">Bericht versturen</button>
+          </form>
+
+          <div class="mail-card">
+            <p>Liever rechtstreeks mailen? Dat kan natuurlijk ook via</p>
+            <a href="mailto:aantafelbijsan@gmail.com">aantafelbijsan@gmail.com</a>
+          </div>
+        </div>
+      </section>
+
+      <p class="page-footer">Vers huisgemaakt in Rosmalen, met aandacht bereid door San.</p>
+    </main>
+  </body>
+</html>

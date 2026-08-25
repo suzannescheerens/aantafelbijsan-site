@@ -9,12 +9,14 @@ const fallbackBorrelboxDates = [
   { date: "2026-08-08", status: "available", remainingBoxes: 4, maxBoxes: 4 },
   { date: "2026-08-15", status: "available", remainingBoxes: 4, maxBoxes: 4 },
   { date: "2026-08-22", status: "available", remainingBoxes: 4, maxBoxes: 4 },
-  { date: "2026-08-29", status: "available", remainingBoxes: 4, maxBoxes: 4 },
+  { date: "2026-08-29", status: "closed", remainingBoxes: 0, maxBoxes: 4 },
   { date: "2026-09-05", status: "available", remainingBoxes: 4, maxBoxes: 4 },
   { date: "2026-09-12", status: "available", remainingBoxes: 4, maxBoxes: 4 },
   { date: "2026-09-19", status: "available", remainingBoxes: 4, maxBoxes: 4 },
   { date: "2026-09-26", status: "available", remainingBoxes: 4, maxBoxes: 4 }
 ];
+
+const manuallyClosedBorrelboxDates = new Set(["2026-08-29"]);
 
 const monthGroups = document.getElementById("monthGroups");
 const reservationPlaceholder = document.getElementById("reservationPlaceholder");
@@ -78,6 +80,11 @@ function getBorrelboxCloseMoment(dateValue) {
 }
 
 function isBorrelboxDateClosed(dateValue, now = new Date()) {
+  const dateKey = formatLocalDateKey(dateValue);
+  if (manuallyClosedBorrelboxDates.has(dateKey)) {
+    return true;
+  }
+
   const closeMoment = getBorrelboxCloseMoment(dateValue);
   return Boolean(closeMoment) && now >= closeMoment;
 }

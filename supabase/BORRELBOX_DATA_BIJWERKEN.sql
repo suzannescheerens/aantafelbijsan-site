@@ -6,7 +6,7 @@ values
   ('2026-06-28', 'closed', 4),
   ('2026-08-29', 'closed', 4),
   ('2026-09-05', 'available', 4),
-  ('2026-09-12', 'available', 4),
+  ('2026-09-12', 'closed', 4),
   ('2026-09-19', 'closed', 4),
   ('2026-09-26', 'available', 4)
 on conflict (service_date) do update

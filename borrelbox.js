@@ -11,12 +11,12 @@ const fallbackBorrelboxDates = [
   { date: "2026-08-22", status: "available", remainingBoxes: 4, maxBoxes: 4 },
   { date: "2026-08-29", status: "closed", remainingBoxes: 0, maxBoxes: 4 },
   { date: "2026-09-05", status: "available", remainingBoxes: 4, maxBoxes: 4 },
-  { date: "2026-09-12", status: "available", remainingBoxes: 4, maxBoxes: 4 },
+  { date: "2026-09-12", status: "closed", remainingBoxes: 0, maxBoxes: 4 },
   { date: "2026-09-19", status: "available", remainingBoxes: 4, maxBoxes: 4 },
   { date: "2026-09-26", status: "available", remainingBoxes: 4, maxBoxes: 4 }
 ];
 
-const manuallyClosedBorrelboxDates = new Set(["2026-08-29"]);
+const manuallyClosedBorrelboxDates = new Set(["2026-08-29", "2026-09-12"]);
 
 const monthGroups = document.getElementById("monthGroups");
 const reservationPlaceholder = document.getElementById("reservationPlaceholder");

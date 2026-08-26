@@ -189,6 +189,14 @@
         border-color: rgba(141, 74, 54, 0.46);
       }
 
+      .form-note {
+        margin: -4px 0 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+        font-style: italic;
+        line-height: 1.5;
+      }
+
       .contact-button {
         display: inline-flex;
         align-items: center;
@@ -266,7 +274,7 @@
         <nav class="top-tabs">
           <a class="top-tab" href="index.html">Borrelbox</a>
           <a class="top-tab" href="weekmenu.html">Weekmenu</a>
-          <a class="top-tab" href="over-san.html">Over San &amp; sfeer</a>
+          <a class="top-tab" href="over-san.html">Over San</a>
           <a class="top-tab is-active" href="contact.html">Contact</a>
         </nav>
       </div>
@@ -307,6 +315,8 @@
               <label class="form-label" for="contactMessage">Bericht</label>
               <textarea class="form-textarea" id="contactMessage" name="bericht" required></textarea>
             </div>
+
+            <p class="form-note">Heb je een allergie of voedselintolerantie? Vermeld dit dan in je bericht.</p>
 
             <button class="contact-button" type="submit">Bericht versturen</button>
           </form>

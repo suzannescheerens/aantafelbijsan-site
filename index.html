@@ -77,6 +77,8 @@
       }
 
       .borrel-hero,
+      .borrel-promo,
+      .contents-card,
       .availability-card,
       .reservation-card,
       .borrel-note {
@@ -90,13 +92,13 @@
 
       .borrel-hero {
         display: grid;
-        grid-template-columns: minmax(0, 1.04fr) minmax(320px, 0.96fr);
+        grid-template-columns: minmax(0, 0.78fr) minmax(320px, 1.22fr);
         overflow: hidden;
       }
 
       .borrel-photo {
         min-height: 100%;
-        max-height: 420px;
+        max-height: 250px;
         background: #eadccf;
       }
 
@@ -108,7 +110,7 @@
       }
 
       .borrel-copy {
-        padding: clamp(28px, 4vw, 42px);
+        padding: clamp(24px, 3.4vw, 34px);
       }
 
       .kicker {
@@ -123,8 +125,8 @@
       .borrel-title {
         margin: 10px 0 0;
         font-family: "Cormorant Garamond", serif;
-        font-size: clamp(2.6rem, 4.7vw, 4rem);
-        line-height: 0.94;
+        font-size: clamp(1.85rem, 3vw, 2.55rem);
+        line-height: 1;
         font-weight: 600;
       }
 
@@ -136,12 +138,11 @@
       }
 
       .borrel-promo {
-        margin: 20px 0 0;
-        padding: 16px 18px;
-        border: 1px solid rgba(93, 73, 62, 0.14);
-        border-radius: 18px;
-        background: rgba(255, 249, 241, 0.78);
-        box-shadow: none;
+        display: grid;
+        grid-template-columns: minmax(220px, 0.85fr) minmax(0, 1.15fr);
+        gap: 16px;
+        align-items: center;
+        overflow: hidden;
         font-family: "Mulish", sans-serif;
       }
 
@@ -149,22 +150,40 @@
         display: none;
       }
 
+      .promo-photo {
+        height: 100%;
+        min-height: 220px;
+        max-height: 280px;
+        background: #eadccf;
+      }
+
+      .promo-photo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .promo-copy {
+        padding: clamp(20px, 2.8vw, 30px);
+      }
+
       .promo-kicker {
-        margin: 0 0 8px;
+        margin: 0 0 7px;
         color: var(--accent);
         font-family: "Mulish", sans-serif;
-        font-size: 0.76rem;
+        font-size: 0.68rem;
         font-weight: 800;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
       }
 
       .borrel-promo p {
-        margin: 8px 0 0;
+        margin: 6px 0 0;
         color: var(--ink);
         font-family: "Mulish", sans-serif;
-        font-size: 0.98rem;
-        line-height: 1.55;
+        font-size: 0.86rem;
+        line-height: 1.42;
       }
 
       .borrel-promo strong {
@@ -173,18 +192,18 @@
 
       .promo-price {
         display: block;
-        margin-top: 10px;
+        margin-top: 8px;
         color: var(--ink);
         font-family: "Mulish", sans-serif;
-        font-size: 0.98rem;
+        font-size: 0.88rem;
         font-weight: 700;
-        line-height: 1.55;
+        line-height: 1.45;
       }
 
       .promo-price strong {
         color: var(--accent);
         font-family: "Mulish", sans-serif;
-        font-size: 1.04rem;
+        font-size: 0.96rem;
         font-weight: 800;
         letter-spacing: 0;
       }
@@ -192,7 +211,7 @@
       .promo-price span {
         color: var(--muted);
         font-family: "Mulish", sans-serif;
-        font-size: 0.95rem;
+        font-size: 0.86rem;
       }
 
       .borrel-price {
@@ -243,7 +262,7 @@
 
       .borrel-gallery {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 18px;
       }
 
@@ -260,12 +279,13 @@
       .gallery-card img {
         display: block;
         width: 100%;
-        aspect-ratio: 1 / 0.82;
+        max-height: 190px;
+        aspect-ratio: 1 / 0.56;
         object-fit: cover;
       }
 
       .gallery-card.is-featured img {
-        aspect-ratio: 1 / 1.02;
+        aspect-ratio: 1 / 0.56;
       }
 
       .gallery-card.is-packaging img {
@@ -286,8 +306,68 @@
 
       .availability-card,
       .reservation-card,
+      .contents-card,
       .borrel-note {
         padding: clamp(24px, 3.4vw, 34px);
+      }
+
+      .contents-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px 16px;
+        margin: 14px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .contents-card {
+        display: grid;
+        grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+        gap: 22px;
+        align-items: center;
+        padding: clamp(18px, 2.4vw, 24px);
+      }
+
+      .contents-card .section-title {
+        font-size: clamp(1.55rem, 2.3vw, 2rem);
+      }
+
+      .contents-list li {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.45;
+      }
+
+      .contents-list li::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        margin-top: 0.5rem;
+        border-radius: 50%;
+        background: var(--instagram);
+        flex: 0 0 auto;
+      }
+
+      .contents-photo {
+        overflow: hidden;
+        border-radius: 22px;
+        min-height: 0;
+        max-width: 240px;
+        background: #eadccf;
+      }
+
+      .contents-photo img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1 / 0.9;
+        object-fit: cover;
+      }
+
+      .contents-copy {
+        padding: 0;
       }
 
       .section-title {
@@ -539,6 +619,10 @@
         line-height: 1.7;
       }
 
+      .borrel-note .allergen-note {
+        font-style: italic;
+      }
+
       .page-footer {
         margin-top: 30px;
         padding: 20px 8px 0;
@@ -551,9 +635,19 @@
 
       @media (max-width: 960px) {
         .borrel-hero,
+        .borrel-promo,
         .borrel-grid,
         .borrel-gallery {
           grid-template-columns: 1fr;
+        }
+
+        .borrel-photo {
+          max-height: 240px;
+        }
+
+        .promo-photo {
+          min-height: 220px;
+          max-height: 260px;
         }
 
         .reservation-card {
@@ -569,6 +663,15 @@
 
         .date-grid {
           grid-template-columns: 1fr;
+        }
+
+        .contents-card,
+        .contents-list {
+          grid-template-columns: 1fr;
+        }
+
+        .contents-photo {
+          max-width: none;
         }
       }
     </style>
@@ -598,7 +701,7 @@
         <nav class="top-tabs">
           <a class="top-tab is-active" href="index.html">Borrelbox</a>
           <a class="top-tab" href="weekmenu.html">Weekmenu</a>
-          <a class="top-tab" href="over-san.html">Over San &amp; sfeer</a>
+          <a class="top-tab" href="over-san.html">Over San</a>
           <a class="top-tab" href="contact.html">Contact</a>
         </nav>
       </div>
@@ -606,7 +709,7 @@
       <section class="borrel-layout">
         <section class="borrel-hero" aria-labelledby="borrelboxTitle">
           <div class="borrel-photo">
-            <img src="borrelbox-hero-new.png" alt="Open borrelbox van Aan Tafel Bij San" />
+            <img src="borrelbox-overzicht.jpg" alt="Open borrelbox van Aan Tafel Bij San" />
           </div>
 
           <div class="borrel-copy">
@@ -616,24 +719,6 @@
               Een rijk gevulde box om samen van te genieten. Perfect voor een gezellige
               avond aan tafel of een ontspannen borrelmoment samen.
             </p>
-            <div
-              class="borrel-promo"
-              id="borrelPromo"
-              data-show-from="2026-08-09"
-              hidden
-            >
-              <p class="promo-kicker">Kennismakingsactie</p>
-              <p><strong>Nog niet eerder een borrelbox besteld?</strong></p>
-              <p>Dan is dit hét moment om kennis te maken.</p>
-              <p>
-                Van 15 augustus t/m 30 september ontvang je €5 kennismakingskorting
-                op je eerste borrelbox.
-              </p>
-              <p class="promo-price">
-                Tijdelijk <strong>€34,95</strong> <span>(normaal €39,95).</span>
-              </p>
-              <p>Ik kijk ernaar uit om ook voor jou iets lekkers op tafel te zetten!</p>
-            </div>
             <p class="borrel-price">€39,95 per box</p>
 
             <div class="borrel-facts">
@@ -649,14 +734,48 @@
           </div>
         </section>
 
-        <section class="borrel-gallery" aria-label="Borrelbox sfeerfoto's">
-          <figure class="gallery-card is-packaging">
-            <img src="borrelbox-verpakking.jpeg" alt="Gesloten borrelbox van Aan Tafel Bij San" />
-          </figure>
+        <section
+          class="borrel-promo"
+          id="borrelPromo"
+          data-show-from="2026-08-09"
+          hidden
+        >
+          <div class="promo-photo">
+            <img src="borrelbox-detail-liefde.jpg" alt="Borrelbox met kazen, fruit en vleeswaren" />
+          </div>
 
-          <figure class="gallery-card is-featured">
-            <img src="borrelbox-right-new.png" alt="Borrelbox van bovenaf met kazen, fruit en vleeswaren" />
-          </figure>
+          <div class="promo-copy">
+            <p class="promo-kicker">Kennismakingsactie</p>
+            <p><strong>Nog niet eerder een borrelbox besteld?</strong></p>
+            <p>Dan is dit hét moment om kennis te maken.</p>
+            <p>
+              Van 15 augustus t/m 30 september ontvang je €5 kennismakingskorting
+              op je eerste borrelbox.
+            </p>
+            <p class="promo-price">
+              Tijdelijk <strong>€34,95</strong> <span>(normaal €39,95).</span>
+            </p>
+            <p>Ik kijk ernaar uit om ook voor jou iets lekkers op tafel te zetten!</p>
+          </div>
+        </section>
+
+        <section class="contents-card" aria-labelledby="contentsTitle">
+          <div class="contents-photo">
+            <img src="borrelbox-kaas-fruit.jpg" alt="Borrelbox met kaas, fruit, vleeswaren en bloemen" />
+          </div>
+
+          <div class="contents-copy">
+            <h3 class="section-title" id="contentsTitle">Wat zit er in de box?</h3>
+            <ul class="contents-list">
+              <li>4 soorten kaas</li>
+              <li>2 soorten vleeswaren</li>
+              <li>Honing</li>
+              <li>Vers fruit</li>
+              <li>Huisgemaakte opgeklopte zwarte-knoflookboter</li>
+              <li>Walnoten</li>
+              <li>Twee soorten crackers</li>
+            </ul>
+          </div>
         </section>
 
         <section class="borrel-grid">
@@ -727,6 +846,10 @@
           <h3 class="section-title" id="borrelNoteTitle">Goed om te weten</h3>
           <p>Er is geen online betaling. Na je reservering neem ik contact met je op voor de bevestiging en het betaalverzoek.</p>
           <p>De borrelbox is met zorg samengesteld als één vaste box. Aanpassingen of keuzemogelijkheden zijn daarom niet mogelijk.</p>
+          <br />
+          <p class="allergen-note">Heb je een allergie of voedselintolerantie? Geef dit vóór het bestellen aan. Ik werk met verschillende allergenen in mijn keuken en kan kruisbesmetting niet volledig uitsluiten.</p>
+          <p class="allergen-note">Allergeneninformatie is op aanvraag beschikbaar.</p>
+          <p class="allergen-note">De borrelbox bevat onder andere rauwmelkse kaas.</p>
         </section>
       </section>
 

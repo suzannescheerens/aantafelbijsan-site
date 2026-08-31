@@ -17,6 +17,7 @@ const fallbackBorrelboxDates = [
 ];
 
 const manuallyClosedBorrelboxDates = new Set(["2026-08-29", "2026-09-12"]);
+const manuallyFullBorrelboxDates = new Set(["2026-09-19"]);
 
 const monthGroups = document.getElementById("monthGroups");
 const reservationPlaceholder = document.getElementById("reservationPlaceholder");
@@ -87,6 +88,10 @@ function isBorrelboxDateClosed(dateValue, now = new Date()) {
 
   const closeMoment = getBorrelboxCloseMoment(dateValue);
   return Boolean(closeMoment) && now >= closeMoment;
+}
+
+function isBorrelboxDateFull(dateValue) {
+  return manuallyFullBorrelboxDates.has(formatLocalDateKey(dateValue));
 }
 
 function shouldShowPromoFromDate(showFromDate) {
@@ -308,8 +313,12 @@ async function loadBorrelboxDates(preferredDate = null) {
     const data = await postSupabaseRpc("get_borrelbox_dates");
     borrelboxDates = data.map((entry) => ({
       date: entry.service_date,
-      status: isBorrelboxDateClosed(entry.service_date) ? "closed" : entry.status,
-      remainingBoxes: isBorrelboxDateClosed(entry.service_date)
+      status: isBorrelboxDateClosed(entry.service_date)
+        ? "closed"
+        : isBorrelboxDateFull(entry.service_date)
+          ? "full"
+          : entry.status,
+      remainingBoxes: isBorrelboxDateClosed(entry.service_date) || isBorrelboxDateFull(entry.service_date)
         ? 0
         : entry.remaining_boxes,
       maxBoxes: entry.max_boxes,
@@ -318,8 +327,12 @@ async function loadBorrelboxDates(preferredDate = null) {
   } catch (error) {
     borrelboxDates = fallbackBorrelboxDates.map((entry) => ({
       ...entry,
-      status: isBorrelboxDateClosed(entry.date) ? "closed" : entry.status,
-      remainingBoxes: isBorrelboxDateClosed(entry.date)
+      status: isBorrelboxDateClosed(entry.date)
+        ? "closed"
+        : isBorrelboxDateFull(entry.date)
+          ? "full"
+          : entry.status,
+      remainingBoxes: isBorrelboxDateClosed(entry.date) || isBorrelboxDateFull(entry.date)
         ? 0
         : entry.remainingBoxes,
       monthLabel: formatMonth(entry.date)

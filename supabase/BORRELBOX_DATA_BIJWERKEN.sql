@@ -22,7 +22,8 @@ set
   status = excluded.status,
   max_boxes = excluded.max_boxes;
 
-delete from public.borrelbox_dates
+update public.borrelbox_dates
+set status = 'closed'
 where service_date >= '2026-06-01'
   and service_date < '2026-09-01';
 

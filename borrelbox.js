@@ -100,6 +100,13 @@ function isBorrelboxDateFull(dateValue) {
   return manuallyFullBorrelboxDates.has(formatLocalDateKey(dateValue));
 }
 
+function isPastBorrelboxDate(dateValue) {
+  const dateKey = formatLocalDateKey(dateValue);
+  const todayKey = getTodayKey();
+
+  return Boolean(dateKey && todayKey && dateKey < todayKey);
+}
+
 function shouldShowPromoFromDate(showFromDate) {
   if (!showFromDate) {
     return true;
@@ -317,32 +324,36 @@ async function postSupabaseRpc(functionName, payload = {}) {
 async function loadBorrelboxDates(preferredDate = null) {
   try {
     const data = await postSupabaseRpc("get_borrelbox_dates");
-    borrelboxDates = data.map((entry) => ({
-      date: entry.service_date,
-      status: isBorrelboxDateClosed(entry.service_date)
-        ? "closed"
-        : isBorrelboxDateFull(entry.service_date)
-          ? "full"
-          : entry.status,
-      remainingBoxes: isBorrelboxDateClosed(entry.service_date) || isBorrelboxDateFull(entry.service_date)
-        ? 0
-        : entry.remaining_boxes,
-      maxBoxes: entry.max_boxes,
-      monthLabel: formatMonth(entry.service_date)
-    }));
+    borrelboxDates = data
+      .filter((entry) => !isPastBorrelboxDate(entry.service_date))
+      .map((entry) => ({
+        date: entry.service_date,
+        status: isBorrelboxDateClosed(entry.service_date)
+          ? "closed"
+          : isBorrelboxDateFull(entry.service_date)
+            ? "full"
+            : entry.status,
+        remainingBoxes: isBorrelboxDateClosed(entry.service_date) || isBorrelboxDateFull(entry.service_date)
+          ? 0
+          : entry.remaining_boxes,
+        maxBoxes: entry.max_boxes,
+        monthLabel: formatMonth(entry.service_date)
+      }));
   } catch (error) {
-    borrelboxDates = fallbackBorrelboxDates.map((entry) => ({
-      ...entry,
-      status: isBorrelboxDateClosed(entry.date)
-        ? "closed"
-        : isBorrelboxDateFull(entry.date)
-          ? "full"
-          : entry.status,
-      remainingBoxes: isBorrelboxDateClosed(entry.date) || isBorrelboxDateFull(entry.date)
-        ? 0
-        : entry.remainingBoxes,
-      monthLabel: formatMonth(entry.date)
-    }));
+    borrelboxDates = fallbackBorrelboxDates
+      .filter((entry) => !isPastBorrelboxDate(entry.date))
+      .map((entry) => ({
+        ...entry,
+        status: isBorrelboxDateClosed(entry.date)
+          ? "closed"
+          : isBorrelboxDateFull(entry.date)
+            ? "full"
+            : entry.status,
+        remainingBoxes: isBorrelboxDateClosed(entry.date) || isBorrelboxDateFull(entry.date)
+          ? 0
+          : entry.remainingBoxes,
+        monthLabel: formatMonth(entry.date)
+      }));
     reservationInfo.hidden = false;
     reservationInfo.textContent =
       "De live voorraad kon niet worden opgehaald. Daarom laat ik tijdelijk de previewdata zien.";
